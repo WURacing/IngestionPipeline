@@ -1,7 +1,7 @@
 {
-  "name": "historical-access",
+  "name": "data-transfer",
   "version": "0.0.0",
-  "description": "Server used to access historical data for the telemetryweb front end",
+  "description": "Websocket Service to move data between ingestion pipeline, DB, and UI",
   "main": "server.js",
   "scripts": {
     "start": "nodemon --exec npm run build-dev",
