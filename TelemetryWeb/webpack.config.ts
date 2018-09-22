@@ -7,11 +7,13 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 
 // Utils
+/*
 let isProduction: boolean = false;
 if (process.argv.indexOf('-p') >= 0) { // If production flag is passed
     isProduction = true;
     process.env.NODE_ENV = 'production';
 }
+*/
 
 // Production Plugins
 const plugins: webpack.Plugin[] = [
@@ -21,7 +23,8 @@ const plugins: webpack.Plugin[] = [
 ];
 
 // Dev Plugins
-if (!isProduction) {
+//if (!isProduction) {
+if (true) {
     plugins.push(
         new WebpackBundleAnalyzer.BundleAnalyzerPlugin({ analyzerPort: 8888 })
     );
@@ -30,7 +33,8 @@ if (!isProduction) {
 
 // Config
 const config: webpack.Configuration = {
-    mode: isProduction ? 'production' : 'development',
+    //mode: isProduction ? 'production' : 'development',
+    mode: 'development',
     context: path.join(__dirname, 'src'),
     output: {
         path: path.join(__dirname, '/dist'),
