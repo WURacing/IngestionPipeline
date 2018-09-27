@@ -1,5 +1,10 @@
 FROM python:3.4-alpine
-ADD . /ingestion
-WORKDIR /ingestion
+
+WORKDIR .
+
+COPY requirements.txt .
+
+COPY /src .
+
 RUN pip install -r requirements.txt
-CMD ["python", "ingest.py"]
+CMD ["python", "-u", "ingest.py"]

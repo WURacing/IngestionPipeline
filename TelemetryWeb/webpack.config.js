@@ -1,20 +1,20 @@
-import * as path from 'path';
-import * as webpack from 'webpack';
+const path = require('path');
+const webpack = require('webpack');
 
 // Plugins
-import * as WebpackBundleAnalyzer from 'webpack-bundle-analyzer';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 // Utils
-let isProduction: boolean = false;
+let isProduction = false;
 if (process.argv.indexOf('-p') >= 0) { // If production flag is passed
     isProduction = true;
     process.env.NODE_ENV = 'production';
 }
 
 // Production Plugins
-const plugins: webpack.Plugin[] = [
+const plugins = [
     new HtmlWebpackPlugin({
         title: 'Telemetry Web'
     })
@@ -30,7 +30,7 @@ if (!isProduction) {
 
 // Config
 //const config: webpack.Configuration = {
-const config: any = {
+const config = {
     mode: isProduction ? 'production' : 'development',
     context: path.join(__dirname, 'src'),
     output: {
@@ -67,12 +67,12 @@ const config: any = {
             errors: true
         },
         open: true,
-        host: '0.0.0.0',
+        host: 'localhost',
         port: 3000,
-        public: '0.0.0.0:3000',
+        //public: '127.0.0.1:3000',
         stats: 'normal',
         watchContentBase: true
     }
 };
 
-export default config;
+module.exports = config;

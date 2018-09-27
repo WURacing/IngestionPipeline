@@ -1,28 +1,40 @@
-version: '2'
+version: '3'
 services:
-    redis:
-        image: "redis:alpine"
+    transfer:
+        build: ./DataTransfer
         ports:
-            - "6379:6379"
-    node:
-        build: ./node
-        ports:
-            - "4000:4000"
-            - "3030:3030"
+            - "2020:2020"
         volumes:
-             - .:/usr/src/app
+             - share-vol:/transfer
+        environment:
+            PORT: 2020
+    historical:
+        build: ./HistoricalAccess
+        ports:
+            - "400:400"
+        volumes:
+             - share-vol:/historical
+        environment:
+            PORT: 400
+    telemetry:
+        build: ./TelemetryWeb
+        ports:
+            - "3000:3000"
+            - "8080:8080"
+        volumes:
+             - share-vol:/telemetry
         environment:
             PORT: 4000
-            REDIS_PORT: 6379
-            WEB_SOCKET_PORT: 3030
         depends_on:
-            - redis
-    python:
-        build: ./python
+            - transfer
+            - historical
+    ingestion:
+        build: ./Ingestion
         ports:
             - "800:800"
         volumes:
-             - .:/usr/src/app
+             - share-vol:/ingestion
         depends_on:
-            - redis
-            - node
+            - transfer
+volumes:
+    share-vol:

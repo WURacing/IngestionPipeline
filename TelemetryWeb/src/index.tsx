@@ -18,6 +18,6 @@ document.body.style.fontFamily = 'Nunito, sans-serif';
 
 // Mount app
 render(
-    <App />,
+    <App color={'blue'}/>,
     document.getElementById('app')
 );

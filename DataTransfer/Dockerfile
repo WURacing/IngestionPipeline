@@ -13,7 +13,6 @@ RUN npm install
 COPY . .
 
 # Run
-EXPOSE 4000
-EXPOSE 3030
+EXPOSE 2020
 # RUN npm run build
 CMD [ "npm", "start" ]

@@ -5,6 +5,6 @@ const app = express();
 
 registerRoutes(app);
 
-app.listen(80, () => {
-    console.log('listening on 80');
+app.listen(400, () => {
+    console.log('listening on 400');
 });
