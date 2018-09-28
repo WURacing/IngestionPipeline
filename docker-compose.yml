@@ -20,9 +20,9 @@ services:
         build: ./TelemetryWeb
         ports:
             - "3000:3000"
-            - "8080:8080"
+        working_dir: /TelemetryWeb/TelemetryWeb
         volumes:
-             - share-vol:/telemetry
+             - .:/TelemetryWeb
         environment:
             PORT: 4000
         depends_on:
@@ -36,5 +36,14 @@ services:
              - share-vol:/ingestion
         depends_on:
             - transfer
+    f3rlcat:
+        build: ./FishWeb
+        ports:
+            - "1500:1500"
+        working_dir: /FishWeb/FishWeb
+        volumes:
+             - .:/FishWeb
+        
+            
 volumes:
     share-vol:

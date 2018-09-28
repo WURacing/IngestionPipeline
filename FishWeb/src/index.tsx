@@ -20,6 +20,6 @@ console.log('teeth');
 
 // Mount app
 render(
-    <App color={'blue'}/>,
+    <App color={'yellow'}/>,
     document.getElementById('app')
 );
