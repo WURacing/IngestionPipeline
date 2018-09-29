@@ -10,7 +10,7 @@ COPY package.json ./
 RUN npm config set registry http://registry.npmjs.org/ && npm install
 COPY . .
 
-RUN npm run build
+#RUN npm run build
 
 # Run
 EXPOSE 2020

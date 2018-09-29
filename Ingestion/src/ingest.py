@@ -1,17 +1,20 @@
 import time
-from websocket import create_connection
+import asyncio
+import websockets
 import random
 
-def ingest():
-    print('Booting...')
-    time.sleep(3)
-    conn = create_connection("ws://0.0.0.0:2020")
-    conn.send('CONN_ROLE:SENDER')
-    console.log('moving on')
-    while(True):
-        time.sleep(3)
-        console.log('send')
-        packet = '%030x' % random.randrange(16**30)
-        conn.send('CAN PACKET:' + packet)
+# TODO handle faliure to connect/send gracefully
 
-ingest()
+async def transmit(uri):
+    async with websockets.connect(uri) as websocket:
+        await websocket.send('CONN_ROLE:SENDER')
+        print('Advancing to send routine')
+        while(True):
+            time.sleep(3)
+            packet = '%030x' % random.randrange(16**30)
+            print('Send ' + packet)
+            await websocket.send(packet)
+
+time.sleep(10)
+asyncio.get_event_loop().run_until_complete(
+    transmit('ws://transfer:2020'))

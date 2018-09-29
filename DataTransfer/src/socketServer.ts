@@ -30,16 +30,22 @@ export default class SocketServer {
     private open = () => {}
 
     private recieve = (connection: any, message: string) => {
-        if (message = 'CONN_ROLE:SENDER') {
-            connection['role'] = 'sender';
-        } else if (message = 'CONN_ROLE:RECIEVER') {
-            connection['role'] = 'reciever';
-        } else if (message = 'SESSION_START') {
+        console.log('recieve to server ' + message);
+        if (message == 'CONN_ROLE:SENDER') {
+            console.log(1);
+            connection['role'] == 'sender';
+        } else if (message == 'CONN_ROLE:RECIEVER') {
+            console.log(2);
+            connection['role'] == 'reciever';
+        } else if (message == 'SESSION_START') {
+            console.log(3);
             // init session in SQL db
-        } else if (message = 'SESSION_END') {
+        } else if (message == 'SESSION_END') {
+            console.log(4);
             // end session in SQL db
         } else {
-            _.forEach(this.server.connection, (client: any) => {
+            //console.log(this.server.clients);
+            this.server.clients.forEach((client: any) => {
                 console.log(client.id);
                 if (client.role == 'reciever') {
                     if (client != connection && client.readyState === WebSocket.OPEN) {
@@ -48,6 +54,17 @@ export default class SocketServer {
                     }
                 }
             });
+            /*
+            _.forEach(this.server.clients, (client: any) => {
+                console.log(client.id);
+                if (client.role == 'reciever') {
+                    if (client != connection && client.readyState === WebSocket.OPEN) {
+                        console.log('sending data');
+                        client.send(message);
+                    }
+                }
+            });
+            */
         }
     }
 

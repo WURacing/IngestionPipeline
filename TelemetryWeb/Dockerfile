@@ -8,6 +8,6 @@ COPY package.json ./
 RUN npm config set registry http://registry.npmjs.org/ && npm install
 COPY . .
 
-RUN npm run build
+#RUN npm run build
 EXPOSE 3000
 CMD [ "npm", "start" ]

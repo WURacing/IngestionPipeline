@@ -29,6 +29,7 @@ class App extends React.Component<IProps, IState> {
 
     public recieve = (data): void => {
         //const parsedData = JSON.parse(data);
+        console.log('recieved ' + data);
         this.setState({
             data: _.concat(this.state.data, data)
         });
@@ -50,7 +51,7 @@ class App extends React.Component<IProps, IState> {
         return (
             <div>
                 <Websocket
-                    url='ws://0.0.0.0:2020'
+                    url="ws://localhost:2020"
                     onMessage={this.recieve}
                 />
                 <DataViewer data={this.state.data} />
