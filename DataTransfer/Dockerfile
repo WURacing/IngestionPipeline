@@ -2,15 +2,15 @@
 FROM node:8-alpine
 
 # Create app directory
-WORKDIR .
-
+#WORKDIR /DataTransfer
+WORKDIR /
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
-RUN npm install
-
-# Bundle app source
+COPY package.json ./
+RUN npm config set registry http://registry.npmjs.org/ && npm install
 COPY . .
+
+RUN npm run build
 
 # Run
 EXPOSE 2020

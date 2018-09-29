@@ -37,7 +37,7 @@ class App extends React.Component<IProps, IState> {
     public render(): JSX.Element {
         return (
             <div onClick={this.setActive} style={this.style}>
-                Welcome to TelemetryWeb yoshs quails
+                Welcome to TelemetryWeb
             </div>
         );
     }

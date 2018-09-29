@@ -4,7 +4,7 @@
   "description": "Websocket Service to move data between ingestion pipeline, DB, and UI",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec npm run build-dev",
+    "start": "nodemon -L --exec npm run build-dev",
     "build": "tsc",
     "build-dev": "npm run build && node ./dist/server.js"
   },
