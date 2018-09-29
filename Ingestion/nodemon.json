@@ -1,0 +1,7 @@
+{
+    "ext": "py",
+    "execMap": {
+        "py": "python"
+    },
+    "watch": "./src/"
+}

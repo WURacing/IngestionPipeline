@@ -3,10 +3,6 @@
   "version": "0.0.0",
   "description": "Racing TelemetryWeb",
   "main": "index.tsx",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "author": "ethanshry",
   "scripts": {
     "start": "webpack-dev-server --inline",

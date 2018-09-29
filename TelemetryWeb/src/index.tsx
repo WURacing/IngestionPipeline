@@ -15,8 +15,6 @@ document.head.appendChild(fonts);
 // Make app fullscreen
 document.body.style.margin = "0px";
 document.body.style.fontFamily = 'Nunito, sans-serif';
-console.log('whales');
-console.log('teeth');
 
 // Mount app
 render(
