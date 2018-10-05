@@ -23,3 +23,7 @@ Should be the public endpoint for the front end.
 All services should have live reload enabled- simply save the file and wait for changed to be pushed to docker.
 
 In the case of a build-level modification (webpack config update, Dockerfile/Docker-Compose, new npm/pip package), a `docker-compose build` and/or `docker-compose up` may be required
+
+## About the Docker-Compose
+
+Honestly, this is hanging by a thread. By some miracle the containers are all talking and at the end of the day that's all that matters. Lord only knows how long that'll last.

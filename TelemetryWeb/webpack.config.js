@@ -43,6 +43,7 @@ const config = {
             errors: true
         },
         port: process.env.PORT,
+        host: '0.0.0.0',
         stats: 'normal',
         watchContentBase: true,
         watchOptions: {

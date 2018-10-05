@@ -12,8 +12,7 @@ export default class SocketServer {
         this.port;
         this.server = new WebSocket.Server(
             { 
-                server: expressServer,
-                host: '{DOCKER_IP}'
+                server: expressServer
             }
         );
 
@@ -46,11 +45,11 @@ export default class SocketServer {
         } else {
 
             let msg = JSON.parse(message);
-            if (msg.id == '001') {
+            if (msg.sensorId == '002') {
                 // best viewed with line graph
                 msg['visualizationType'] = 'line';
                 msg['name'] = 'Engine Temp';
-            } else if (msg.id == '002') {
+            } else if (msg.sensorId == '001') {
                 // best viewed with val graph
                 msg['visualizationType'] = 'value';
                 msg['name'] = 'Car Is Active';

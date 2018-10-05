@@ -8,6 +8,8 @@ services:
              - ./DataTransfer:/src
         environment:
             PORT: 2020
+        networks:
+            - backend
     historical:
         build: ./HistoricalAccess
         ports:
@@ -16,17 +18,22 @@ services:
              - ./HistoricalAccess:/src
         environment:
             PORT: 400
+        networks:
+            - backend
     telemetry:
         build: ./TelemetryWeb
+        container_name: telemetry
         ports:
             - "3000:3000"
         volumes:
              - ./TelemetryWeb:/src
         environment:
-            PORT: 4000
+            PORT: 3000
         depends_on:
             - transfer
             - historical
+        networks:
+            - backend
     ingestion:
         build: ./Ingestion
         ports:
@@ -35,3 +42,8 @@ services:
              - ./Ingestion:/src
         depends_on:
             - transfer
+        networks:
+            - backend
+networks:
+    backend:
+        driver: "bridge"

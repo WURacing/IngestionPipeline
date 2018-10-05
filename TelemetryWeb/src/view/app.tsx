@@ -53,7 +53,7 @@ class App extends React.Component<IProps, IState> {
         return (
             <div>
                 <Websocket
-                    url="ws://transfer:2020"
+                    url="ws://localhost:2020"
                     onMessage={this.recieve}
                 />
                 <DataManagedApp data={this.state.data} />
