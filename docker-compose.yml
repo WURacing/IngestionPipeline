@@ -27,8 +27,6 @@ services:
         depends_on:
             - transfer
             - historical
-        links:
-            - transfer
     ingestion:
         build: ./Ingestion
         ports:
@@ -36,6 +34,4 @@ services:
         volumes:
              - ./Ingestion:/src
         depends_on:
-            - transfer
-        links:
             - transfer

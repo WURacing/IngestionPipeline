@@ -13,7 +13,7 @@ export default class SocketServer {
         this.server = new WebSocket.Server(
             { 
                 server: expressServer,
-                host: '0.0.0.0'
+                host: '{DOCKER_IP}'
             }
         );
 
@@ -44,13 +44,27 @@ export default class SocketServer {
             console.log(4);
             // end session in SQL db
         } else {
+
+            let msg = JSON.parse(message);
+            if (msg.id == '001') {
+                // best viewed with line graph
+                msg['visualizationType'] = 'line';
+                msg['name'] = 'Engine Temp';
+            } else if (msg.id == '002') {
+                // best viewed with val graph
+                msg['visualizationType'] = 'value';
+                msg['name'] = 'Car Is Active';
+            }
+
+            msg = JSON.stringify(msg);
+
             //console.log(this.server.clients);
             this.server.clients.forEach((client: any) => {
                 console.log(client.id);
                 if (client.role == 'reciever') {
                     if (client != connection && client.readyState === WebSocket.OPEN) {
                         console.log('sending data');
-                        client.send(message);
+                        client.send(msg);
                     }
                 }
             });

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as Websocket from 'react-websocket';
 import * as _ from 'lodash';
 import DataViewer from './dataViewer';
+import DataManagedApp from './dataManagedApp';
 
 interface IProps {
     color?: string
@@ -28,10 +29,11 @@ class App extends React.Component<IProps, IState> {
     }
 
     public recieve = (data): void => {
-        //const parsedData = JSON.parse(data);
-        console.log('recieved ' + data);
+        const parsedData = JSON.parse(data);
+
+        //console.log('recieved ' + data);
         this.setState({
-            data: _.concat(this.state.data, data)
+            data: _.concat(this.state.data, parsedData)
         });
     }
 
@@ -51,13 +53,10 @@ class App extends React.Component<IProps, IState> {
         return (
             <div>
                 <Websocket
-                    url="ws://localhost:2020"
+                    url="ws://transfer:2020"
                     onMessage={this.recieve}
                 />
-                <DataViewer data={this.state.data} />
-                <div onClick={this.setActive} style={this.style}>
-                    Welcome to TelemetryWeb
-                </div>
+                <DataManagedApp data={this.state.data} />
             </div>
         );
     }

@@ -10,8 +10,8 @@ registerRoutes(app);
 
 console.log('server is gtg');
 
-const server = app.listen(2020, () => {
-    console.log('listening on 2020');
+const server = app.listen(process.env.port, () => {
+    console.log('listening on ' + process.env.PORT);
 });
 
 const sServer = new SocketServer(server);

@@ -10,9 +10,18 @@ async def transmit(uri):
         await websocket.send('CONN_ROLE:SENDER')
         print('Advancing to send routine')
         while(True):
-            time.sleep(3)
-            packet = '%030x' % random.randrange(16**30)
-            print('Send ' + packet)
+            time.sleep(1)
+            packet = {}
+            if random.random() < .2:
+                # send bool val
+                packet['sensorId'] = '001'
+                packet['value'] = True
+            else:
+                tmp = random.randint(0, 40) + 150
+                packet['sensorId'] = '002'
+                packet['value'] = tmp
+            #packet = '%030x' % random.randrange(16**30)
+            #print('Send ' + packet)
             await websocket.send(packet)
 
 time.sleep(10)

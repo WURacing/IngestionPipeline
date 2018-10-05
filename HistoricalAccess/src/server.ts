@@ -5,6 +5,6 @@ const app = express();
 
 registerRoutes(app);
 
-app.listen(400, () => {
-    console.log('listening on 400');
+app.listen(process.env.PORT, () => {
+    console.log('listening on ' + process.env.PORT);
 });
