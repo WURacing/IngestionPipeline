@@ -1,6 +1,7 @@
 import * as WebSocket from 'ws';
 import * as _ from 'lodash';
 import * as shortid from 'shortid';
+import MsgConfig from './messageConfig';
 
 export default class SocketServer {
 
@@ -18,6 +19,7 @@ export default class SocketServer {
 
         this.server.on('open', this.open);
         this.server.on('connection', (conn: any) => {
+            // TODO: assign session Id? 
             conn['id'] = shortid.generate();
             conn['role'] = 'reciever';
             conn.on('message', (msg) => {
