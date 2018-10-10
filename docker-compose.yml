@@ -10,16 +10,16 @@ services:
             PORT: 2020
         networks:
             - backend
-    historical:
-        build: ./HistoricalAccess
-        ports:
-            - "400:400"
-        volumes:
-             - ./HistoricalAccess:/src
-        environment:
-            PORT: 400
-        networks:
-            - backend
+    #historical:
+    #    build: ./HistoricalAccess
+    #    ports:
+    #        - "400:400"
+    #    volumes:
+    #         - ./HistoricalAccess:/src
+    #    environment:
+    #        PORT: 400
+    #    networks:
+    #        - backend
     telemetry:
         build: ./TelemetryWeb
         container_name: telemetry
@@ -31,7 +31,7 @@ services:
             PORT: 3000
         depends_on:
             - transfer
-            - historical
+    #        - historical
         networks:
             - backend
     ingestion:

@@ -6,7 +6,7 @@ import json
 
 # TODO handle faliure to connect/send gracefully
 
-# TODO decide if 
+# TODO decide if 3
 
 # TODO 
 
